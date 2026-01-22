@@ -111,6 +111,7 @@ const GovUkDashboard = ({
                                     viewBox="0 0 32 30"
                                     height="30"
                                     width="32"
+                                    style={{ marginLeft: '5px', flexShrink: 0 }}
                                 >
                                     <path
                                         fill="currentColor"

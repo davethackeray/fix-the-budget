@@ -146,3 +146,70 @@
 .govuk-notification-banner--success .govuk-notification-banner__header {
     background-color: #00703c;
 }
+
+/* ============================================
+   HEADER ALIGNMENT FIX
+   Crown and GOV.UK text aligned horizontally
+   as per official GOV.UK design system
+   ============================================ */
+.govuk-header {
+    overflow: visible !important;
+}
+
+.govuk-header__container {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    position: relative !important;
+    padding-left: 15px !important;
+    overflow: visible !important;
+}
+
+.govuk-header__logo {
+    display: flex;
+    align-items: center;
+    overflow: visible;
+    flex-shrink: 0;
+}
+
+.govuk-header__link--homepage {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.govuk-header__logotype {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.govuk-header__logotype-crown {
+    margin-right: 4px;
+    vertical-align: middle;
+    overflow: visible;
+    flex-shrink: 0;
+}
+
+.govuk-header__logotype-text {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 30px;
+}
+
+.govuk-header__content {
+    margin-left: auto;
+}
+
+.govuk-header__service-name {
+    font-size: 19px;
+    font-weight: 700;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.govuk-header__service-name:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 3px;
+    text-underline-offset: 0.1em;
+}
