@@ -1,0 +1,349 @@
+@import "tailwindcss";
+
+/* GOOGLE FONTS: Premium typography */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+  font-family: Inter, system-ui, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color-scheme: dark;
+  
+  /* CINEMATIC DARK THEME */
+  --bg-main: #030508;
+  --bg-gradient: linear-gradient(135deg, #030508 0%, #0a1628 50%, #030508 100%);
+  --text-main: rgba(255, 255, 255, 0.95);
+  --text-muted: rgba(255, 255, 255, 0.5);
+  --panel-bg: rgba(255, 255, 255, 0.03);
+  --panel-border: rgba(255, 255, 255, 0.08);
+  --panel-glow: rgba(212, 175, 55, 0.1);
+  
+  /* DRAMATIC ACCENT COLORS */
+  --accent-gold: #D4AF37;
+  --accent-gold-glow: rgba(212, 175, 55, 0.4);
+  --accent-red: #dc2626;
+  --accent-red-glow: rgba(220, 38, 38, 0.5);
+  --accent-green: #22c55e;
+  --accent-blue: #3b82f6;
+  --accent-purple: #a855f7;
+  
+  /* CRISIS COLORS */
+  --crisis-red: #ff0000;
+  --crisis-orange: #ff6b00;
+  
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+[data-theme='light'] {
+  --bg-main: #f8fafc;
+  --bg-gradient: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #f8fafc 100%);
+  --text-main: #0f172a;
+  --text-muted: rgba(15, 23, 42, 0.6);
+  --panel-bg: rgba(255, 255, 255, 0.9);
+  --panel-border: rgba(0, 0, 0, 0.1);
+  --panel-glow: rgba(212, 175, 55, 0.2);
+  --accent-gold: #b45309;
+  --accent-red: #dc2626;
+  --accent-green: #16a34a;
+}
+
+@theme {
+  --color-chancellor-gold: var(--accent-gold);
+  --color-chancellor-red: var(--accent-red);
+  --color-bg-main: var(--bg-main);
+  --color-text-main: var(--text-main);
+  --color-text-muted: var(--text-muted);
+  --color-panel-bg: var(--panel-bg);
+  --color-panel-border: var(--panel-border);
+  --color-panel-glow: var(--panel-glow);
+  --color-accent-green: var(--accent-green);
+  --color-accent-blue: var(--accent-blue);
+  --color-accent-purple: var(--accent-purple);
+  --color-crisis-red: var(--crisis-red);
+  --color-crisis-orange: var(--crisis-orange);
+  --font-display: 'Bebas Neue', sans-serif;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: var(--bg-gradient);
+  color: var(--text-main);
+  transition: background-color 0.3s, color 0.3s;
+  overflow-x: hidden;
+}
+
+#root {
+  width: 100%;
+}
+
+/* ========================================
+   ANIMATED BACKGROUND GRID
+   ======================================== */
+.bg-grid {
+  position: fixed;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.bg-grid::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 0%, var(--accent-gold-glow) 0%, transparent 70%);
+  opacity: 0.3;
+}
+
+/* ========================================
+   CRISIS ANIMATION EFFECTS
+   ======================================== */
+@keyframes screen-shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-4px); }
+  20%, 40%, 60%, 80% { transform: translateX(4px); }
+}
+
+@keyframes pulse-danger {
+  0%, 100% { box-shadow: 0 0 0 0 var(--accent-red-glow); }
+  50% { box-shadow: 0 0 30px 10px var(--accent-red-glow); }
+}
+
+@keyframes scan-line {
+  0% { top: -100%; }
+  100% { top: 100%; }
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
+  75% { opacity: 0.95; }
+}
+
+.crisis-active {
+  animation: screen-shake 0.5s ease-in-out;
+}
+
+.crisis-pulse {
+  animation: pulse-danger 2s ease-in-out infinite;
+}
+
+/* ========================================
+   GLASSMORPHISM PANELS
+   ======================================== */
+.glass-panel {
+  background: var(--panel-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--panel-border);
+  box-shadow: 
+    0 4px 6px -1px rgba(0, 0, 0, 0.3),
+    0 2px 4px -2px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
+}
+
+.glass-panel:hover {
+  border-color: var(--accent-gold);
+  box-shadow: 
+    0 0 30px var(--panel-glow),
+    0 4px 6px -1px rgba(0, 0, 0, 0.3);
+}
+
+/* ========================================
+   CONTROL SLIDERS - CHUNKY GAME-LIKE
+   ======================================== */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 12px;
+  background: linear-gradient(to right, var(--accent-green), var(--accent-gold), var(--accent-red));
+  border-radius: 6px;
+  cursor: grab;
+  position: relative;
+}
+
+input[type="range"]:active {
+  cursor: grabbing;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 28px;
+  height: 28px;
+  background: linear-gradient(135deg, #fff 0%, #d4d4d4 100%);
+  border: 3px solid var(--accent-gold);
+  border-radius: 50%;
+  cursor: grab;
+  box-shadow: 
+    0 4px 12px rgba(0, 0, 0, 0.4),
+    0 0 20px var(--accent-gold-glow);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+  box-shadow: 
+    0 6px 20px rgba(0, 0, 0, 0.5),
+    0 0 30px var(--accent-gold-glow);
+}
+
+input[type="range"]::-webkit-slider-thumb:active {
+  transform: scale(1.25);
+  cursor: grabbing;
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+  background: linear-gradient(135deg, #fff 0%, #d4d4d4 100%);
+  border: 3px solid var(--accent-gold);
+  border-radius: 50%;
+  cursor: grab;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+input[type="range"]:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  background: rgba(100, 100, 100, 0.3);
+}
+
+input[type="range"]:disabled::-webkit-slider-thumb {
+  background: #666;
+  border-color: #444;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+/* ========================================
+   KPI GAUGES
+   ======================================== */
+.gauge-ring {
+  stroke-linecap: round;
+  fill: none;
+  transition: stroke-dashoffset 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.gauge-glow {
+  filter: drop-shadow(0 0 8px var(--accent-gold));
+}
+
+/* ========================================
+   TICKER TAPE - TV NEWS STYLE
+   ======================================== */
+.ticker-container {
+  background: linear-gradient(90deg, var(--accent-red) 0%, #7f1d1d 50%, var(--accent-red) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.ticker-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.1) 50%, transparent 100%);
+  animation: scan-line 3s linear infinite;
+  pointer-events: none;
+}
+
+/* ========================================
+   ACHIEVEMENT TOAST
+   ======================================== */
+@keyframes achievement-pop {
+  0% { transform: translateY(100px) scale(0.8); opacity: 0; }
+  15% { transform: translateY(-10px) scale(1.05); opacity: 1; }
+  25% { transform: translateY(0) scale(1); }
+  85% { transform: translateY(0) scale(1); opacity: 1; }
+  100% { transform: translateY(-20px) scale(0.95); opacity: 0; }
+}
+
+.achievement-toast {
+  animation: achievement-pop 4s ease-out forwards;
+}
+
+/* ========================================
+   BUTTON STYLES
+   ======================================== */
+.btn-primary {
+  background: linear-gradient(135deg, var(--accent-gold) 0%, #b8860b 100%);
+  color: #000;
+  font-weight: 700;
+  padding: 12px 24px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transition: all 0.2s ease;
+  box-shadow: 
+    0 4px 15px rgba(212, 175, 55, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 8px 25px rgba(212, 175, 55, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-danger {
+  background: linear-gradient(135deg, var(--accent-red) 0%, #991b1b 100%);
+  color: #fff;
+}
+
+.btn-danger:hover {
+  box-shadow: 0 8px 25px var(--accent-red-glow);
+}
+
+/* ========================================
+   TYPOGRAPHY
+   ======================================== */
+.font-display {
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 0.05em;
+}
+
+.text-gradient-gold {
+  background: linear-gradient(135deg, #D4AF37 0%, #FFD700 50%, #D4AF37 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ========================================
+   SCROLLBAR
+   ======================================== */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent-gold);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #b8860b;
+}

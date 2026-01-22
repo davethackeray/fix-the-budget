@@ -1,0 +1,148 @@
+/* GOV.UK Overrides for Budget Simulator */
+
+/* ============================================
+   RANGE INPUT (SLIDER) - Custom Component
+   Not standard GOV.UK but styled consistently
+   ============================================ */
+.govuk-range-input {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 8px;
+    background: #b1b4b6;
+    /* govuk-colour("mid-grey") */
+    border-radius: 4px;
+    outline: none;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.govuk-range-input:focus {
+    outline: 3px solid #ffdd00;
+    /* govuk-colour("yellow") */
+    outline-offset: 0;
+}
+
+.govuk-range-input:disabled {
+    background: #f3f2f1;
+    /* govuk-colour("light-grey") */
+    cursor: not-allowed;
+}
+
+.govuk-range-input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #1d70b8;
+    /* govuk-colour("blue") */
+    cursor: pointer;
+    border: 3px solid #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+}
+
+.govuk-range-input::-webkit-slider-thumb:hover {
+    background: #003078;
+    /* govuk-colour("dark-blue") */
+}
+
+.govuk-range-input:disabled::-webkit-slider-thumb {
+    background: #b1b4b6;
+    cursor: not-allowed;
+}
+
+.govuk-range-input::-moz-range-thumb {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #1d70b8;
+    cursor: pointer;
+    border: 3px solid #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+}
+
+.govuk-range-input::-moz-range-thumb:hover {
+    background: #003078;
+}
+
+/* ============================================
+   STICKY FOOTER - Custom Component
+   Displays key metrics at bottom of viewport
+   ============================================ */
+.govuk-sticky-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #f3f2f1;
+    /* govuk-colour("light-grey") */
+    border-top: 5px solid #1d70b8;
+    /* govuk-colour("blue") */
+    padding: 15px 0;
+    z-index: 100;
+}
+
+.govuk-sticky-footer__item {
+    text-align: center;
+}
+
+.govuk-sticky-footer__label {
+    display: block;
+    font-size: 14px;
+    font-weight: 400;
+    color: #505a5f;
+    /* govuk-colour("dark-grey") */
+    margin-bottom: 4px;
+}
+
+.govuk-sticky-footer__value {
+    display: block;
+    font-size: 24px;
+    font-weight: 700;
+    color: #0b0c0c;
+    /* govuk-colour("black") */
+}
+
+/* WCAG Compliant Colours for Deficit/Surplus */
+.govuk-sticky-footer__item--error .govuk-sticky-footer__value {
+    color: #d4351c;
+    /* govuk-colour("red") - 4.5:1 on light grey */
+}
+
+.govuk-sticky-footer__item--success .govuk-sticky-footer__value {
+    color: #00703c;
+    /* govuk-colour("green") - 4.5:1 on light grey */
+}
+
+/* ============================================
+   SANKEY CONTAINER
+   Fixed height for visualisation
+   ============================================ */
+.govuk-sankey-container {
+    height: 500px;
+    width: 100%;
+    background: #ffffff;
+    border: 1px solid #b1b4b6;
+    border-radius: 0;
+}
+
+/* ============================================
+   BODY PADDING
+   Account for sticky footer
+   ============================================ */
+.govuk-template__body {
+    padding-bottom: 120px;
+}
+
+/* ============================================
+   NOTIFICATION BANNER SUCCESS VARIANT
+   ============================================ */
+.govuk-notification-banner--success {
+    border-color: #00703c;
+}
+
+.govuk-notification-banner--success .govuk-notification-banner__header {
+    background-color: #00703c;
+}
